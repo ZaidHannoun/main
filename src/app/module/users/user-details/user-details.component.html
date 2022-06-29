@@ -1,0 +1,15 @@
+<p>user-details works!</p>
+<a routerLink="../../">back</a>
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <img class="card-img-top" [src]="user.picture" alt="Card image cap">
+      
+      <a routerLink="posts" class="card-link">Posts</a>
+      <a routerLink="details" class="card-link">Information</a>
+    </div>
+  </div>
+
+<router-outlet
+[id]="'id'"
+></router-outlet>

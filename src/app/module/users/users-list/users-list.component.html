@@ -1,0 +1,25 @@
+<p>users-list works!</p>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        
+  
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of users">
+      <tr routerLink="../profile/{{user.id}}">
+        <th scope="row">{{user.id}}</th>
+        <th scope="row">{{user.firstName}}</th>
+        <th scope="row">{{user.lastName}}</th>
+        
+  
+        
+        
+      </tr>
+     
+    </tbody>
+  </table>
