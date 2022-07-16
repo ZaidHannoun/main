@@ -23,6 +23,6 @@ export const find = async (searchString) => {
   return await search("resource", query);
 };
 
-function isMongoID(searchString) {
+export function isMongoID(searchString) {
   return mongoose.isValidObjectId(searchString) ? true : false;
 }

@@ -9,22 +9,16 @@ services:
       - "3000:3000"
     container_name: backend-docker
     restart: always
-    depends_on:
-      - mongo
-      - es01
-    networks:
-      - mern-app
+    links:
+    - mongo
+   
     # Create database container
   mongo:
+    container_name: mongo
     image: candis/mongo-replica-set
     ports:
       - "27017:27017"
-      - "27018:27018"
-      - "27019:27019"
-    networks:
-      - mern-app
-    volumes:
-      - mongo-data:/data/db
+
 
   # Create elasticsearch container
   es01:
@@ -36,15 +30,15 @@ services:
     ports:
       - 9200:9200
 
-    networks:
-      - mern-app
-
 networks:
-  mern-app:
-    driver: bridge
+  mongors-network:
+    driver: bridge    
+
 
 volumes:
   mongo-data:
     driver: local
   elastic-data:
     driver: local
+
+
