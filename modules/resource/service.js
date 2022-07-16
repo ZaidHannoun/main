@@ -1,26 +1,29 @@
 import resource from "../../models/Resource.js";
 import bcrypt from "bcrypt";
-import { search } from "../../utils/elastic.js";
+import { search, getById } from "../../utils/elastic.js";
+import mongoose from "mongoose";
 
-export const create = async (title, path, tags, type) => {
-  const hash = await bcrypt.hash(password, 3);
+export const create = async ({ title, path, tags, type }) => {
   return await resource.create({ title, path, tags, type });
 };
 
-export const search = async (search) => {
+export const find = async (searchString) => {
   // await User.find({
   //   type: 'Admin'
   // })
+
+  if (isMongoID(searchString)) return await getById("resource", searchString);
+
   const query = {
-    "simple_query_string" : {
-      "query": search,
-      "fields": [
-        "id^3",
-        "path^3",
-        "title^2",] 
-  }  
+    multi_match: {
+      query: searchString,
+      fields: ["path^3", "tags^2", "title^2"],
+      fuzziness: "AUTO",
+    },
   };
-  return await search("user", query);
-  // return await Admin.findOne()
+  return await search("resource", query);
 };
 
+function isMongoID(searchString) {
+  return mongoose.isValidObjectId(searchString) ? true : false;
+}

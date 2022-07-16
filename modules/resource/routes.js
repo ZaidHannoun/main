@@ -1,11 +1,8 @@
-import express from 'express';
-const router = express.Router()
-import * as controller from './controller.js'
-import authenticationMiddleware from '../../middlewares/authentication.js'
+import express from "express";
+const router = express.Router();
+import * as controller from "./controller.js";
 
-router.use(authenticationMiddleware)
+router.post("/create", controller.create);
 
-router.post('/', controller.create)
-router.get('/:search', controller.find)
-
-export default router
+router.get("/:search", controller.search);
+export default router;

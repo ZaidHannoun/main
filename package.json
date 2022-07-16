@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "TEST_RUNNING=true node_modules/.bin/jasmine",
     "start": "nodemon server.js"
