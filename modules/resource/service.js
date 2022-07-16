@@ -1,5 +1,4 @@
 import resource from "../../models/Resource.js";
-import bcrypt from "bcrypt";
 import { search, getById } from "../../utils/elastic.js";
 import mongoose from "mongoose";
 
