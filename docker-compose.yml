@@ -11,34 +11,17 @@ services:
     restart: always
     links:
     - mongo
+    depends_on:
+      - mongo
    
     # Create database container
   mongo:
     container_name: mongo
-    image: candis/mongo-replica-set
+    image: mongo
     ports:
       - "27017:27017"
+      
+      
 
 
-  # Create elasticsearch container
-  es01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.5
-    container_name: es01
-    volumes:
-      - elastic-data:/usr/share/elasticsearch/data
-
-    ports:
-      - 9200:9200
-
-networks:
-  mongors-network:
-    driver: bridge    
-
-
-volumes:
-  mongo-data:
-    driver: local
-  elastic-data:
-    driver: local
-
-
+  
