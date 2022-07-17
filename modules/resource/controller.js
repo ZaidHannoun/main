@@ -1,13 +1,18 @@
 import * as service from "./service.js";
-
-export const create = async (req, res) => {
+import { ApiError } from "../../errors/ApiError.js";
+export const create = async (req, res,next) => {
   const { title, path, tags, type } = req.body;
+  try{
   const create = await service.create({ title, path, tags, type });
-  res.send(create);
+  res.send(create);}
+  catch(err){
+    if(err.code ==11000)
+    next(ApiError.duplicateError("duplicate"))
+  }
 };
 
 export const search = async (req, res) => {
-  const { search } = req.params;
-  const result = await service.find(search);
+  const { searchString, offset ,limit } = req.query;
+  const result = await service.find(searchString , offset ,limit);
   res.send(result);
 };
