@@ -8,11 +8,17 @@ export const create = async (req, res,next) => {
   catch(err){
     if(err.code ==11000)
     next(ApiError.duplicateError("duplicate"))
+    next(err)
   }
 };
 
-export const search = async (req, res) => {
+export const search = async (req, res,next) => {
   const { searchString, offset ,limit } = req.query;
+  try{
   const result = await service.find(searchString , offset ,limit);
-  res.send(result);
+
+  res.send(result);}
+  catch(err){
+  next(err)    
+  }
 };

@@ -14,6 +14,9 @@ class ApiError {
     static duplicateError(message) {
         return new ApiError(409, message)
     }
+    static queryError(message) {
+        return new ApiError(400, message)
+    }
 }
 
 export { ApiError }
