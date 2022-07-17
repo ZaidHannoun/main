@@ -13,18 +13,11 @@ export const find = async (searchString, offset = 0, limit = 10,page=0) => {
     return await resource.findOne({ path: searchString });
   await resource.find();
   let option = { offset: offset, limit: limit };
-  //return await resource.paginate({ $text: { $search: searchString } }, option);
-  //return await resource.fuzzySearch(searchString).limit(10).skip(limit*page+offset)
-  return await resource.aggregate([{"$search": {
-    "autocomplete": {
-      "path": "title",
-      "query": "helloooooo guysss",
-      
-      
-    }
+  return await resource.paginate({ $text: { $search: searchString } }, option);
+  
    
-  }
-}])
+  
+
 };
 
 export function isMongoID(searchString) {

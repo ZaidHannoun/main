@@ -34,7 +34,6 @@
     "jasmine": "^4.1.0",
     "mongoose": "^6.4.4",
     "mongoose-delete": "^0.5.4",
-    "mongoose-fuzzy-searching-v3": "^2.1.0",
     "mongoose-paginate-v2": "^1.6.3",
     "nodemon": "^2.0.15"
   }
