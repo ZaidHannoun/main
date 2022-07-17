@@ -19,6 +19,7 @@ export const search = async (req, res,next) => {
 
   res.send(result);}
   catch(err){
+    console.log(err);
   next(err)    
   }
 };

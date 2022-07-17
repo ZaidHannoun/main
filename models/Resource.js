@@ -13,6 +13,21 @@ const resourceSchema = new mongoose.Schema(
     timestamps: true,
   }
 ).index({ "$**": "text" });
+// {"mappings": {
+//   "dynamic": false,
+//   "fields": {
+//     "title": [
+//       {
+//         "type": "autocomplete",
+//         "tokenization": "edgeGram",
+//         "minGrams": 2,
+//         "maxGrams": 15,
+//         "foldDiacritics": true
+//       }
+//     ]
+//   }
+// }
+// }
 
 resourceSchema.plugin(mongoose_delete, { deletedAt: true, deletedBy: true });
 resourceSchema.plugin(mongoose_paginate)

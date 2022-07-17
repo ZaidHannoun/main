@@ -4,6 +4,13 @@
   "description": "",
   "main": "server.js",
   "type": "module",
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "engines": {
+    "node": "16.15.1"
+  },
   "scripts": {
     "test": "jasmine",
     "start": "nodemon server.js"
