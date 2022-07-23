@@ -1,5 +1,5 @@
 # Base image
-FROM node
+FROM node:18.6.0
 # Make folder to put our files in
 
 # Set working directory so that all subsequent command runs in this folder

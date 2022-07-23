@@ -7,44 +7,37 @@ services:
     build: .
     ports:
       - "3000:3000"
-    container_name: backend-docker
-    restart: always
     depends_on:
-      - mongo
-      - es01
-    networks:
-      - mern-app
-    # Create database container
-  mongo:
-    image: candis/mongo-replica-set
-    ports:
-      - "27017:27017"
-      - "27018:27018"
-      - "27019:27019"
-    networks:
-      - mern-app
+      - elastic
+
     volumes:
-      - mongo-data:/data/db
+      - .:/main
+      - /main/node_modules  
+ 
+ 
 
   # Create elasticsearch container
-  es01:
+  elastic:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.5
-    container_name: es01
-    volumes:
-      - elastic-data:/usr/share/elasticsearch/data
+   
 
     ports:
-      - 9200:9200
+      - 127.0.0.1:9200:9200
+      - 127.0.0.1:9300:9300
+    
+    environment:
+      - discovery.type=single-node
 
-    networks:
-      - mern-app
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.5
+   
 
-networks:
-  mern-app:
-    driver: bridge
+    ports:
+      - 127.0.0.1:5601:5601
+    
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elastic:9200
 
-volumes:
-  mongo-data:
-    driver: local
-  elastic-data:
-    driver: local
+    depends_on:
+      - elastic
+

@@ -4,7 +4,7 @@ import { index } from "../utils/elastic.js";
 const resourceSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    path: { type: String, required: true },
+    path: { type: String, required: true ,unique: true },
     tags: [{ type: String, required: true }],
   },
   {

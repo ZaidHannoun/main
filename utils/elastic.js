@@ -22,5 +22,5 @@ export const search = async (index_name, query, from = 0, size = 100) => {
 };
 export const getById = async (index, id) => {
   const response = await client.get({ index, type: "_doc", id });
-  return response.body?._source;
+  return response;
 };
